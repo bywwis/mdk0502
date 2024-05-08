@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 113
+  Left = 535
   Height = 350
-  Top = 320
+  Top = 506
   Width = 290
   Caption = 'Калькулятор'
   ClientHeight = 350
@@ -14,7 +14,7 @@ object Form1: TForm1
   DesignTimePPI = 120
   OnCreate = FormCreate
   LCLVersion = '3.0.0.3'
-  object Edit1: TEdit
+  object Output: TEdit
     Left = 8
     Height = 40
     Top = 16
@@ -32,9 +32,9 @@ object Form1: TForm1
     ParentFont = False
     ReadOnly = True
     TabOrder = 0
-    OnChange = Edit1Change
+    OnChange = OutputChange
   end
-  object Button1: TButton
+  object Del: TButton
     Left = 8
     Height = 50
     Top = 64
@@ -51,9 +51,9 @@ object Form1: TForm1
     Font.Quality = fqDraft
     ParentFont = False
     TabOrder = 1
-    OnClick = Button1Click
+    OnClick = DelClick
   end
-  object Button2: TButton
+  object Clear: TButton
     Left = 120
     Height = 50
     Top = 64
@@ -70,9 +70,9 @@ object Form1: TForm1
     Font.Quality = fqDraft
     ParentFont = False
     TabOrder = 2
-    OnClick = Button2Click
+    OnClick = ClearClick
   end
-  object Button3: TButton
+  object Cancel: TButton
     Left = 176
     Height = 50
     Top = 64
@@ -89,9 +89,9 @@ object Form1: TForm1
     Font.Quality = fqDraft
     ParentFont = False
     TabOrder = 3
-    OnClick = Button3Click
+    OnClick = CancelClick
   end
-  object Button4: TButton
+  object Sqrt: TButton
     Left = 232
     Height = 50
     Top = 64
@@ -108,9 +108,9 @@ object Form1: TForm1
     Font.Quality = fqDraft
     ParentFont = False
     TabOrder = 4
-    OnClick = Button4Click
+    OnClick = SqrtClick
   end
-  object Button5: TButton
+  object Seven: TButton
     Left = 8
     Height = 50
     Top = 120
@@ -127,9 +127,9 @@ object Form1: TForm1
     Font.Quality = fqDraft
     ParentFont = False
     TabOrder = 5
-    OnClick = Button5Click
+    OnClick = SevenClick
   end
-  object Button6: TButton
+  object Eight: TButton
     Left = 64
     Height = 50
     Top = 120
@@ -146,9 +146,9 @@ object Form1: TForm1
     Font.Quality = fqDraft
     ParentFont = False
     TabOrder = 6
-    OnClick = Button6Click
+    OnClick = EightClick
   end
-  object Button7: TButton
+  object Nine: TButton
     Left = 120
     Height = 50
     Top = 120
@@ -165,9 +165,9 @@ object Form1: TForm1
     Font.Quality = fqDraft
     ParentFont = False
     TabOrder = 7
-    OnClick = Button7Click
+    OnClick = NineClick
   end
-  object Button8: TButton
+  object Division: TButton
     Left = 176
     Height = 50
     Top = 120
@@ -184,9 +184,9 @@ object Form1: TForm1
     Font.Quality = fqDraft
     ParentFont = False
     TabOrder = 8
-    OnClick = Button8Click
+    OnClick = DivisionClick
   end
-  object Button9: TButton
+  object Sqr: TButton
     Left = 232
     Height = 50
     Top = 120
@@ -203,9 +203,9 @@ object Form1: TForm1
     Font.Quality = fqDraft
     ParentFont = False
     TabOrder = 9
-    OnClick = Button9Click
+    OnClick = SqrClick
   end
-  object Button10: TButton
+  object Four: TButton
     Left = 8
     Height = 50
     Top = 176
@@ -222,9 +222,9 @@ object Form1: TForm1
     Font.Quality = fqDraft
     ParentFont = False
     TabOrder = 10
-    OnClick = Button10Click
+    OnClick = FourClick
   end
-  object Button11: TButton
+  object Five: TButton
     Left = 64
     Height = 50
     Top = 176
@@ -241,9 +241,9 @@ object Form1: TForm1
     Font.Quality = fqDraft
     ParentFont = False
     TabOrder = 11
-    OnClick = Button11Click
+    OnClick = FiveClick
   end
-  object Button12: TButton
+  object Six: TButton
     Left = 120
     Height = 50
     Top = 176
@@ -260,9 +260,9 @@ object Form1: TForm1
     Font.Quality = fqDraft
     ParentFont = False
     TabOrder = 12
-    OnClick = Button12Click
+    OnClick = SixClick
   end
-  object Button13: TButton
+  object Mult: TButton
     Left = 176
     Height = 50
     Top = 176
@@ -279,9 +279,9 @@ object Form1: TForm1
     Font.Quality = fqDraft
     ParentFont = False
     TabOrder = 13
-    OnClick = Button13Click
+    OnClick = MultClick
   end
-  object Button14: TButton
+  object Delenie: TButton
     Left = 232
     Height = 50
     Top = 176
@@ -298,9 +298,9 @@ object Form1: TForm1
     Font.Quality = fqDraft
     ParentFont = False
     TabOrder = 14
-    OnClick = Button14Click
+    OnClick = DelenieClick
   end
-  object Button15: TButton
+  object One: TButton
     Left = 8
     Height = 50
     Top = 232
@@ -317,9 +317,9 @@ object Form1: TForm1
     Font.Quality = fqDraft
     ParentFont = False
     TabOrder = 15
-    OnClick = Button15Click
+    OnClick = OneClick
   end
-  object Button16: TButton
+  object Two: TButton
     Left = 64
     Height = 50
     Top = 232
@@ -336,9 +336,9 @@ object Form1: TForm1
     Font.Quality = fqDraft
     ParentFont = False
     TabOrder = 16
-    OnClick = Button16Click
+    OnClick = TwoClick
   end
-  object Button17: TButton
+  object Three: TButton
     Left = 120
     Height = 50
     Top = 232
@@ -355,9 +355,9 @@ object Form1: TForm1
     Font.Quality = fqDraft
     ParentFont = False
     TabOrder = 17
-    OnClick = Button17Click
+    OnClick = ThreeClick
   end
-  object Button18: TButton
+  object Minus: TButton
     Left = 176
     Height = 50
     Top = 232
@@ -374,9 +374,9 @@ object Form1: TForm1
     Font.Quality = fqDraft
     ParentFont = False
     TabOrder = 18
-    OnClick = Button18Click
+    OnClick = MinusClick
   end
-  object Button19: TButton
+  object equally: TButton
     Left = 232
     Height = 110
     Top = 232
@@ -393,9 +393,9 @@ object Form1: TForm1
     Font.Quality = fqDraft
     ParentFont = False
     TabOrder = 19
-    OnClick = Button19Click
+    OnClick = equallyClick
   end
-  object Button20: TButton
+  object Zero: TButton
     Left = 4
     Height = 50
     Top = 288
@@ -412,9 +412,9 @@ object Form1: TForm1
     Font.Quality = fqDraft
     ParentFont = False
     TabOrder = 20
-    OnClick = Button20Click
+    OnClick = ZeroClick
   end
-  object Button22: TButton
+  object comma: TButton
     Left = 120
     Height = 50
     Top = 288
@@ -431,9 +431,9 @@ object Form1: TForm1
     Font.Quality = fqDraft
     ParentFont = False
     TabOrder = 21
-    OnClick = Button22Click
+    OnClick = commaClick
   end
-  object Button23: TButton
+  object Plus: TButton
     Left = 176
     Height = 50
     Top = 288
@@ -450,6 +450,6 @@ object Form1: TForm1
     Font.Quality = fqDraft
     ParentFont = False
     TabOrder = 22
-    OnClick = Button23Click
+    OnClick = PlusClick
   end
 end

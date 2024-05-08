@@ -12,50 +12,52 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
-    Button1: TButton;
-    Button10: TButton;
-    Button11: TButton;
-    Button12: TButton;
-    Button13: TButton;
-    Button14: TButton;
-    Button15: TButton;
-    Button16: TButton;
-    Button17: TButton;
-    Button18: TButton;
-    Button19: TButton;
-    Button2: TButton;
-    Button20: TButton;
-    Button3: TButton;
-    Button4: TButton;
-    Button5: TButton;
-    Button6: TButton;
-    Button7: TButton;
-    Button8: TButton;
-    Button9: TButton;
-    Edit1: TEdit;
-    procedure Button10Click(Sender: TObject);
-    procedure Button11Click(Sender: TObject);
-    procedure Button12Click(Sender: TObject);
-    procedure Button13Click(Sender: TObject);
-    procedure Button14Click(Sender: TObject);
-    procedure Button15Click(Sender: TObject);
-    procedure Button16Click(Sender: TObject);
-    procedure Button17Click(Sender: TObject);
-    procedure Button18Click(Sender: TObject);
-    procedure Button19Click(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
-    procedure Button20Click(Sender: TObject);
-    procedure Button22Click(Sender: TObject);
-    procedure Button23Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
-    procedure Button4Click(Sender: TObject);
-    procedure Button5Click(Sender: TObject);
-    procedure Button6Click(Sender: TObject);
-    procedure Button7Click(Sender: TObject);
-    procedure Button8Click(Sender: TObject);
-    procedure Button9Click(Sender: TObject);
-    procedure Edit1Change(Sender: TObject);
+    comma: TButton;
+    Del: TButton;
+    Four: TButton;
+    Five: TButton;
+    Plus: TButton;
+    Six: TButton;
+    Mult: TButton;
+    Delenie: TButton;
+    One: TButton;
+    Two: TButton;
+    Three: TButton;
+    Minus: TButton;
+    equally: TButton;
+    Clear: TButton;
+    Zero: TButton;
+    Cancel: TButton;
+    Sqrt: TButton;
+    Seven: TButton;
+    Eight: TButton;
+    Nine: TButton;
+    Division: TButton;
+    Sqr: TButton;
+    Output: TEdit;
+    procedure FourClick(Sender: TObject);
+    procedure FiveClick(Sender: TObject);
+    procedure SixClick(Sender: TObject);
+    procedure MultClick(Sender: TObject);
+    procedure DelenieClick(Sender: TObject);
+    procedure OneClick(Sender: TObject);
+    procedure TwoClick(Sender: TObject);
+    procedure ThreeClick(Sender: TObject);
+    procedure MinusClick(Sender: TObject);
+    procedure equallyClick(Sender: TObject);
+    procedure DelClick(Sender: TObject);
+    procedure ZeroClick(Sender: TObject);
+    procedure commaClick(Sender: TObject);
+    procedure PlusClick(Sender: TObject);
+    procedure ClearClick(Sender: TObject);
+    procedure CancelClick(Sender: TObject);
+    procedure SqrtClick(Sender: TObject);
+    procedure SevenClick(Sender: TObject);
+    procedure EightClick(Sender: TObject);
+    procedure NineClick(Sender: TObject);
+    procedure DivisionClick(Sender: TObject);
+    procedure SqrClick(Sender: TObject);
+    procedure OutputChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
 
@@ -75,28 +77,28 @@ implementation
 { TForm1 }
 
 //Процедура для стирания одного символа строки
-procedure TForm1.Button1Click(Sender: TObject);
+procedure TForm1.DelClick(Sender: TObject);
 var
   str: string;
 begin
-  str := Edit1.Text;
+  str := Output.Text;
   //Условие проверяет строку на не пустоту
   if str <> '' then
     begin
       //Если условие истинно, то удаляется последний символ строки
       Delete(str, Length(str), 1);
     end;
-  Edit1.Text := str;
+  Output.Text := str;
 end;
 
 //Процедура нажатия кнопки с цифрой 0
-procedure TForm1.Button20Click(Sender: TObject);
+procedure TForm1.ZeroClick(Sender: TObject);
 begin
-  Edit1.Text := Edit1.Text + '0';
+  Output.Text := Output.Text + '0';
 end;
 
 //Процедура нажатия кнопки с запятой
-procedure TForm1.Button22Click(Sender: TObject);
+procedure TForm1.commaClick(Sender: TObject);
 var
   a: string;
   i, count: integer;
@@ -104,19 +106,19 @@ begin
    a := ',';
   // Счётчик для подсчёта символа ","
   count := 0;
-  Edit1.Text := Edit1.Text + a;
+  Output.Text := Output.Text + a;
   //Циклом проходимся по строке
-  for i := 1 to Length(Edit1.Text) do
+  for i := 1 to Length(Output.Text) do
       begin
         //Условие проверяет равен ли символ строки символу ","
-        if Edit1.Text[i] = ',' then
+        if Output.Text[i] = ',' then
           //Если условие истинно, то к счётчику прибавляется 1
           count += 1;
         //Условие проверяет введено ли 2 запятые в одной строке
         if count >= 2 then
           begin
             //Если условие истинно, то выводится сообщение, завершается процедура и очищается поле
-            Edit1.Clear;
+            Output.Clear;
             ShowMessage('Некорректный ввод. Повторите попытку.');
             Exit;
           end;
@@ -124,132 +126,132 @@ begin
 end;
 
 //Процедура нажатия кнопки сложения
-procedure TForm1.Button23Click(Sender: TObject);
+procedure TForm1.PlusClick(Sender: TObject);
 begin
-  if Edit1.Text = '' then
+  if Output.Text = '' then
     begin
-      Edit1.Clear;
+      Output.Clear;
       ShowMessage('Некорректный ввод. Повторите попытку.');
       Exit;
     end;
-  if (Edit1.Text <> '') or (Edit1.Text = Mark) then
+  if (Output.Text <> '') or (Output.Text = Mark) then
     begin
-      Numb1 := StrToFloat(Edit1.Text);
-      Edit1.Clear;
+      Numb1 := StrToFloat(Output.Text);
+      Output.Clear;
       Mark := '+';
     end;
 end;
 
 //Процедура нажатия кнопки с цифрой 4
-procedure TForm1.Button10Click(Sender: TObject);
+procedure TForm1.FourClick(Sender: TObject);
 begin
-  Edit1.Text := Edit1.Text + '4';
+  Output.Text := Output.Text + '4';
 end;
 
 //Процедура нажатия кнопки с цифрой 5
-procedure TForm1.Button11Click(Sender: TObject);
+procedure TForm1.FiveClick(Sender: TObject);
 begin
-  Edit1.Text := Edit1.Text + '5';
+  Output.Text := Output.Text + '5';
 end;
 
 //Процедура нажатия кнопки с цифрой 6
-procedure TForm1.Button12Click(Sender: TObject);
+procedure TForm1.SixClick(Sender: TObject);
 begin
-  Edit1.Text := Edit1.Text + '6';
+  Output.Text := Output.Text + '6';
 end;
 
 //Процедура для нажатия кнопки умножения
-procedure TForm1.Button13Click(Sender: TObject);
+procedure TForm1.MultClick(Sender: TObject);
 begin
-  if Edit1.Text = '' then
+  if Output.Text = '' then
     begin
-      Edit1.Clear;
+      Output.Clear;
       ShowMessage('Некорректный ввод. Повторите попытку.');
       Exit;
     end;
-  if (Edit1.Text <> '') or (Edit1.Text = Mark) then
+  if (Output.Text <> '') or (Output.Text = Mark) then
     begin
-      Numb1 := StrToFloat(Edit1.Text);
-      Edit1.Clear;
+      Numb1 := StrToFloat(Output.Text);
+      Output.Clear;
       Mark := '*';
     end;
 end;
 
 //Процедура для нажатия кнопки 1/х
-procedure TForm1.Button14Click(Sender: TObject);
+procedure TForm1.DelenieClick(Sender: TObject);
 begin
-  Numb1 := StrToFloat(Edit1.Text);
+  Numb1 := StrToFloat(Output.Text);
   //Условие проверяет значение, равное 0, т.к. на 0 делить нельзя
   if Numb1 = 0 then
     begin
       //Если условие истинно, то выводится сообщение, завершается процедура и очищается поле
-      Edit1.Clear;
+      Output.Clear;
       ShowMessage('Введено некорректно значение. Повторите попытку.');
       Exit;
     end;
 
   Numb1 := 1 / Numb1;
-  Edit1.Text := FloatToStr(Numb1);
+  Output.Text := FloatToStr(Numb1);
 end;
 
 //Процедура нажатия кнопки с цифрой 1
-procedure TForm1.Button15Click(Sender: TObject);
+procedure TForm1.OneClick(Sender: TObject);
 begin
-  Edit1.Text := Edit1.Text + '1';
+  Output.Text := Output.Text + '1';
 end;
 
 //Процедура нажатия кнопки с цифрой 2
-procedure TForm1.Button16Click(Sender: TObject);
+procedure TForm1.TwoClick(Sender: TObject);
 begin
-  Edit1.Text := Edit1.Text + '2';
+  Output.Text := Output.Text + '2';
 end;
 
 //Процедура нажатия кнопки с цифрой 3
-procedure TForm1.Button17Click(Sender: TObject);
+procedure TForm1.ThreeClick(Sender: TObject);
 begin
-  Edit1.Text := Edit1.Text + '3';
+  Output.Text := Output.Text + '3';
 end;
 
 //Процедура нажатия кнопки вычитания
-procedure TForm1.Button18Click(Sender: TObject);
+procedure TForm1.MinusClick(Sender: TObject);
 begin
-  if Edit1.Text = '' then
+  if Output.Text = '' then
     begin
-      Edit1.Clear;
+      Output.Clear;
       ShowMessage('Некорректный ввод. Повторите попытку.');
       Exit;
     end;
-  if (Edit1.Text <> '') or (Edit1.Text = Mark) then
+  if (Output.Text <> '') or (Output.Text = Mark) then
     begin
-      Numb1 := StrToFloat(Edit1.Text);
-      Edit1.Clear;
+      Numb1 := StrToFloat(Output.Text);
+      Output.Clear;
       Mark := '-';
     end;
 end;
 
 //Процедура нажатия кнопки равно
-procedure TForm1.Button19Click(Sender: TObject);
+procedure TForm1.equallyClick(Sender: TObject);
 begin
-  if Edit1.Text = '' then
+  if Output.Text = '' then
     begin
-      Edit1.Clear;
+      Output.Clear;
       ShowMessage('Некорректный воод. Повторите попытку.');
       Exit;
     end;
-  if (Edit1.Text <> '') or (Edit1.Text = Mark) then
+  if (Output.Text <> '') or (Output.Text = Mark) then
     begin
-      Numb2 := StrToFloat(Edit1.Text);
-      Edit1.Clear;
+      Numb2 := StrToFloat(Output.Text);
+      Output.Clear;
     end;
 
-  Edit1.Clear;
+  Output.Clear;
   //Условие проверяет деление на 0
   if (Mark = '/') and (Numb2 = 0) then
     begin
       //Если условие истинно, то выводится сообщение, завершается процедура и очищается поле
       ShowMessage('На ноль делить нельзя! Повторите попытку.');
       Exit;
-      Edit1.Clear;
+      Output.Clear;
     end;
 
   case Mark of
@@ -258,47 +260,47 @@ begin
   '/': Numb3 := Numb1 / Numb2;
   '*': Numb3 := Numb1 * Numb2;
   end;
-  Edit1.Text := FloatToStr(Numb3);
+  Output.Text := FloatToStr(Numb3);
 end;
 
 //Процедура нажатия кнопки отмены действия
-procedure TForm1.Button2Click(Sender: TObject);
+procedure TForm1.ClearClick(Sender: TObject);
 begin
   Numb1 := 0;
   Numb2 := 0;
   Numb3 := 0;
-  Edit1.Clear;
+  Output.Clear;
 end;
 
 //Процедура нажатия кнопки очищения поля
-procedure TForm1.Button3Click(Sender: TObject);
+procedure TForm1.CancelClick(Sender: TObject);
 begin
-  Edit1.Clear;
+  Output.Clear;
 end;
 
 //Процедура нажатия кнопки для извлечения корня
-procedure TForm1.Button4Click(Sender: TObject);
+procedure TForm1.SqrtClick(Sender: TObject);
 begin
-  if Edit1.Text <> Mark then
+  if Output.Text <> Mark then
     begin
-      Numb1 := StrToFloat(Edit1.Text);
+      Numb1 := StrToFloat(Output.Text);
       //Условие проверяет отрицательно ли значение, т.к. нельзя извлекать корень из отрицательного значения
       if Numb1 < 0 then
       begin
       //Если условие истинно, то выводится сообщение, завершается процедура и очищается поле
-             Edit1.Clear;
+             Output.Clear;
              ShowMessage('Введено некорректно значение. Повторите попытку.');
              Exit;
       end;
 
   Numb1 := Sqrt(Numb1);
-  Edit1.Text := FloatToStr(Numb1);
+  Output.Text := FloatToStr(Numb1);
 
     end;
 
-  if Edit1.Text = Mark then
+  if Output.Text = Mark then
      begin
-       Edit1.Clear;
+       Output.Clear;
        ShowMessage('Введено некорректное значение. Повторите попытку.');
        Exit;
      end;
@@ -306,59 +308,48 @@ begin
 end;
 
 //Процедура нажатия кнопки с цифрой 7
-procedure TForm1.Button5Click(Sender: TObject);
+procedure TForm1.SevenClick(Sender: TObject);
 begin
-  Edit1.Text := Edit1.Text + '7';
+  Output.Text := Output.Text + '7';
 end;
 
 //Процедура нажатия кнопки с цифрой 8
-procedure TForm1.Button6Click(Sender: TObject);
+procedure TForm1.EightClick(Sender: TObject);
 begin
-  Edit1.Text := Edit1.Text + '8';
+  Output.Text := Output.Text + '8';
 
 end;
 
 //Процедура нажатия кнопки с цифрой 9
-procedure TForm1.Button7Click(Sender: TObject);
+procedure TForm1.NineClick(Sender: TObject);
 begin
-  Edit1.Text := Edit1.Text + '9';
+  Output.Text := Output.Text + '9';
 end;
 
 //Процедура нажатия кнопки деления
-procedure TForm1.Button8Click(Sender: TObject);
+procedure TForm1.DivisionClick(Sender: TObject);
 begin
-  if Edit1.Text = '' then
+  if Output.Text = '' then
     begin
-      Edit1.Clear;
+      Output.Clear;
       ShowMessage('Некорректный ввод. Повторите попытку.');
       Exit;
     end;
-  if (Edit1.Text <> '') or (Edit1.Text = Mark) then
+  if (Output.Text <> '') or (Output.Text = Mark) then
     begin
-      Numb1 := StrToFloat(Edit1.Text);
-      Edit1.Clear;
+      Numb1 := StrToFloat(Output.Text);
+      Output.Clear;
       Mark := '/';
     end;
 end;
 
 //Процедура нажатия кнопки возведения в квадрат
-procedure TForm1.Button9Click(Sender: TObject);
+procedure TForm1.SqrClick(Sender: TObject);
 begin
-  Numb1 := StrToFloat(Edit1.Text);
+  Numb1 := StrToFloat(Output.Text);
   Numb1 := Sqr(Numb1);
-  Edit1.Text := FloatToStr(Numb1);
+  Output.Text := FloatToStr(Numb1);
 end;
-
-procedure TForm1.Edit1Change(Sender: TObject);
-begin
-
-end;
-
-procedure TForm1.FormCreate(Sender: TObject);
-begin
-
-end;
-
 
 end.
 

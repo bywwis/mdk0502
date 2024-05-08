@@ -280,19 +280,28 @@ end;
 procedure TForm1.Button4Click(Sender: TObject);
 begin
   if Edit1.Text <> Mark then
-    Numb1 := StrToFloat(Edit1.Text);
-
-  //Условие проверяет отрицательно ли значение, т.к. нельзя извлекать корень из отрицательного значения
-  if Numb1 < 0 then
     begin
+      Numb1 := StrToFloat(Edit1.Text);
+      //Условие проверяет отрицательно ли значение, т.к. нельзя извлекать корень из отрицательного значения
+      if Numb1 < 0 then
+      begin
       //Если условие истинно, то выводится сообщение, завершается процедура и очищается поле
-      Edit1.Clear;
-      ShowMessage('Введено некорректно значение. Повторите попытку.');
-      Exit;
-    end;
+             Edit1.Clear;
+             ShowMessage('Введено некорректно значение. Повторите попытку.');
+             Exit;
+      end;
 
   Numb1 := Sqrt(Numb1);
   Edit1.Text := FloatToStr(Numb1);
+
+    end;
+
+  if Edit1.Text = Mark then
+     begin
+       Edit1.Clear;
+       ShowMessage('Введено некорректное значение. Повторите попытку.');
+       Exit;
+     end;
 
 end;
 
