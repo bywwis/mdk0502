@@ -9,6 +9,14 @@ uses
   Grids, edit;
 
 type
+  Market = record
+    Name: string[100];
+    Price: integer;
+    Warehouse: boolean;
+    Maker: string[100];
+    Category: string[100];
+  end; //record
+
 
   { TfMain }
 
@@ -31,38 +39,27 @@ type
 
   end;
 
-type
-  Market = record
-    Name: string[100];
-    Price: string[20];
-    Warehouse: string[10];
-    Maker: string[100];
-    Category: string[100];
-  end; //record
-
 var
   fMain: TfMain;
+  f: file of Market;
   adres: string; //адрес, откуда запущена программа
 
 implementation
 
 {$R *.lfm}
 
-{ TfMain }
-
 procedure TfMain.bAddClick(Sender: TObject);
 begin
   //очищаем поля, если там что-то есть:
   fEdit.eName.Text:= '';
   fEdit.ePrice.Text:= '';
-  fEdit.eCategory.Text:= '';
   fEdit.eMaker.Text:= '';
   //устанавливаем ModalResult редактора в mrNone:
   fEdit.ModalResult:= mrNone;
   //теперь выводим форму:
   fEdit.ShowModal;
   //если пользователь ничего не ввел - выходим:
-  if (fEdit.eName.Text = '') or (fEdit.ePrice.Text = '') or (fEdit.eCategory.Text = '') or (fEdit.eMaker.Text = '') then exit;
+  if (fEdit.eName.Text = '') or (fEdit.ePrice.Text = '') or (fEdit.eMaker.Text = '') then exit;
   //если пользователь не нажал "Сохранить" - выходим:
   if fEdit.ModalResult <> mrOk then exit;
   //иначе добавляем в сетку строку, и заполняем её:
@@ -70,8 +67,9 @@ begin
   SG.Cells[0, SG.RowCount-1]:= fEdit.eName.Text;
   SG.Cells[1, SG.RowCount-1]:= fEdit.ePrice.Text;
   SG.Cells[2, SG.RowCount-1]:= fEdit.eMaker.Text;
-  SG.Cells[3, SG.RowCount-1]:= fEdit.CBNote.Text;
-  SG.Cells[4, SG.RowCount-1]:= fEdit.eCategory.Text;
+  SG.Cells[4, SG.RowCount-1]:= fEdit.CBNote.Text;
+  if fEdit.eWarehouse.Checked then SG.Cells[3, SG.RowCount-1]:= 'Есть'
+  else SG.Cells[3, SG.RowCount-1]:= 'Отсутствует';
 end;
 
 procedure TfMain.bDelClick(Sender: TObject);
@@ -94,8 +92,9 @@ begin
   fEdit.eName.Text:= SG.Cells[0, SG.Row];
   fEdit.ePrice.Text:= SG.Cells[1, SG.Row];
   fEdit.eMaker.Text:= SG.Cells[2, SG.Row];
-  fEdit.CBNote.Text:= SG.Cells[3, SG.Row];
-  fEdit.eCategory.Text:= SG.Cells[4, SG.Row];
+  fEdit.CBNote.Text:= SG.Cells[4, SG.Row];
+  if fEdit.eWarehouse.Checked then SG.Cells[3, SG.RowCount-1]:= 'Есть'
+  else SG.Cells[3, SG.RowCount-1]:= 'Отсутствует';
   //устанавливаем ModalResult редактора в mrNone:
   fEdit.ModalResult:= mrNone;
   //теперь выводим форму:
@@ -106,8 +105,9 @@ begin
     SG.Cells[0, SG.Row]:= fEdit.eName.Text;
     SG.Cells[1, SG.Row]:= fEdit.ePrice.Text;
     SG.Cells[2, SG.Row]:= fEdit.eMaker.Text;
-    SG.Cells[3, SG.Row]:= fEdit.CBNote.Text;
-    SG.Cells[4, SG.Row]:= fEdit.eCategory.Text
+    SG.Cells[4, SG.Row]:= fEdit.CBNote.Text;
+    if fEdit.eWarehouse.Checked then SG.Cells[3, SG.RowCount-1]:= 'Есть'
+    else SG.Cells[3, SG.RowCount-1]:= 'Отсутствует';
   end;
 end;
 
@@ -122,22 +122,23 @@ end;
 procedure TfMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 var
   MyMarket: Market; //для очередной записи
-  f: file of Market; //файл данных
+  //файл данных
   i: integer; //счетчик цикла
 begin
   //если строки данных пусты, просто выходим:
   if SG.RowCount = 1 then exit;
   //иначе открываем файл для записи:
   try
-    AssignFile(f, adres + 'telephones.dat');
+    AssignFile(f, adres + 'market.dat');
     Rewrite(f);
     //теперь цикл - от первой до последней записи сетки:
     for i:= 1 to SG.RowCount-1 do begin
       //получаем данные текущей записи:
       MyMarket.Name:= SG.Cells[0, i];
-      MyMarket.Price:= SG.Cells[1, i];
-      MyMarket.Warehouse:= SG.Cells[2, i];
-      MyMarket.Maker:= SG.Cells[3, i];
+      MyMarket.Price:= StrToInt(SG.Cells[1, i]);
+      if fEdit.eWarehouse.Checked then SG.Cells[3, SG.RowCount-1]:= 'Есть'
+      else SG.Cells[3, SG.RowCount-1]:= 'Отсутствует';
+      MyMarket.Maker:= SG.Cells[2, i];
       MyMarket.Category:= SG.Cells[4, i];
       //записываем их:
       Write(f, MyMarket);
@@ -146,6 +147,8 @@ begin
     CloseFile(f);
   end;
 end;
+
+
 
 procedure TfMain.FormCreate(Sender: TObject);
 var
@@ -181,9 +184,10 @@ begin
       //добавляем в сетку новую строку, и заполняем её:
         SG.RowCount:= SG.RowCount + 1;
         SG.Cells[0, SG.RowCount-1]:= MyMarket.Name;
-        SG.Cells[1, SG.RowCount-1]:= MyMarket.Price;
-        SG.Cells[2, SG.RowCount-1]:= MyMarket.Warehouse;
-        SG.Cells[3, SG.RowCount-1]:= MyMarket.Maker;
+        SG.Cells[1, SG.RowCount-1]:= IntToStr(MyMarket.Price);
+        if fEdit.eWarehouse.Checked then SG.Cells[3, SG.RowCount-1]:= 'Есть'
+        else SG.Cells[3, SG.RowCount-1]:= 'Отсутствует';
+        SG.Cells[2, SG.RowCount-1]:= MyMarket.Maker;
         SG.Cells[4, SG.RowCount-1]:= MyMarket.Category;
     end;
   finally
